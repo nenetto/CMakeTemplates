@@ -1,0 +1,25 @@
+// This is an example for a heaer file
+// It defines the square of a number function
+
+#include "@PROJECT_NAME_DEFAULT@PublicHeader.h"
+
+@PROJECT_NAME_DEFAULT@_EXPORT double @PROJECT_NAME_DEFAULT@::myfunction(double x)
+{
+	return sqrt(x);
+}
+
+
+@PROJECT_NAME_DEFAULT@_EXPORT void @PROJECT_NAME_DEFAULT@::printConfigVariables(void){
+
+// This line print variables into Config.h header if
+// DEBUG_FLAG was set to TRUE during Configuration time
+#ifdef @PROJECT_NAME_DEFAULT@_DEBUG_FLAG
+
+    fprintf(stdout,"The current version of the program %s is: %i.%i\n",
+           @PROJECT_NAME_DEFAULT@_PROJECT_NAME, @PROJECT_NAME_DEFAULT@_VERSION_MAJOR, @PROJECT_NAME_DEFAULT@_VERSION_MINOR);
+#else
+
+    fprintf(stdout,"printConfigVariables function\n");
+
+#endif
+  }

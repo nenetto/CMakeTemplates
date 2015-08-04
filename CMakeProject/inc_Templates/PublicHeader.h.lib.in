@@ -1,0 +1,19 @@
+// This is an example for a heaer file
+// It defines the square of a number function
+
+// This header file will be created during configuration time
+// You can modify into CMake folder
+#include "@PROJECT_NAME_DEFAULT@Config.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+namespace @PROJECT_NAME_DEFAULT@{
+
+@PROJECT_NAME_DEFAULT@_EXPORT double myfunction(double x);
+
+@PROJECT_NAME_DEFAULT@_EXPORT void printConfigVariables(void);
+
+}
+
