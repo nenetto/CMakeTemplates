@@ -19,6 +19,16 @@
 # Minimum version of CMake required ##
 ######################################
 
+# Author: Eugenio Marinetto [nenetto@gmail.com]
+
+#### Code SRC and inc
+# Change your src files into src folder
+# Change your header files into inc folder
+
+#### Installed files
+# The project will create an install folder after compilation
+# All files into install folder will be copied there too.
+
 # Minimum version of CMake required
 cmake_minimum_required (VERSION 3.0.2)
 
@@ -47,7 +57,7 @@ set_property(CACHE PROJECT_TYPE PROPERTY STRINGS ${PROJECT_VALUES})
 # Name of the project default
 set(PROJECT_NAME_DEFAULT "MyProject" CACHE PATH "Name of the Project")
 # Folder to save the template
-set(SOURCE_DIR_DEFAULT "${${PROJECT_NAME}_BINARY_DIR}/${PROJECT_NAME_DEFAULT}" CACHE PATH "Directory where save the project" FORCE)
+set(SOURCE_DIR_DEFAULT "${${PROJECT_NAME}_BINARY_DIR}/${PROJECT_NAME_DEFAULT}" CACHE PATH "Directory where save the project")
 
 
 ###############################
