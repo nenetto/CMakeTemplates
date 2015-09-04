@@ -214,7 +214,7 @@ set(CONF_EXECUTABLES ${PROJECT_NAME})
 set(CONF_EXECUTABLES_DIRS "@INSTALL_DIR_DEFAULT@/bin")
 
 if(${PROJECT_NAME}_CMAKE_DEBUG_FLAG)
-    message("    Creating Config File ${PROJECT_NAME}Config.cmake into ${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake")
+    message("    Creating Config File ${PROJECT_NAME}Config.cmake into @INSTALL_DIR_DEFAULT@/${PROJECT_NAME}Config.cmake")
 endif()
 # Create the file
 configure_file("${PROJECT_SOURCE_DIR}/CMake/Config.cmake.in" "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigInstall.cmake" @ONLY)
