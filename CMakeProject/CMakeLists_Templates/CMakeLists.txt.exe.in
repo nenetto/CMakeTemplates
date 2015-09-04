@@ -191,7 +191,7 @@ export(PACKAGE ${PROJECT_NAME})
 # Configure Config.cmake for install folder ##
 ##############################################
 # Include folders
-set(CONF_INCLUDE_DIRS "${PROJECT_BINARY_DIR}/@INSTALL_DIR_DEFAULT@/inc")
+set(CONF_INCLUDE_DIRS "@INSTALL_DIR_DEFAULT@/inc")
 # Include files
 file(GLOB CONF_INCLUDE_FILES ${CONF_INCLUDE_DIRS}/*.h)
 # Source folders
@@ -199,9 +199,9 @@ set(CONF_SOURCE_DIRS "")
 # Library names
 set(CONF_LIBRARY "")
 # Library Folders
-set(CONF_LIBRARY_DIRS "${PROJECT_BINARY_DIR}/@INSTALL_DIR_DEFAULT@/lib")
+set(CONF_LIBRARY_DIRS "@INSTALL_DIR_DEFAULT@/lib")
 # Binary folder
-set(CONF_BINARY_DIR "${PROJECT_BINARY_DIR}")
+set(CONF_BINARY_DIR "@INSTALL_DIR_DEFAULT@/bin")
 # Install folder
 set(CONF_INSTALL_DIR "${${PROJECT_NAME}_INSTALL_DIR}")
 # Flag for libraries
@@ -211,7 +211,7 @@ set(CONF_DEFINITIONS
     -DCMAKE_DEBUG_FLAG:BOOL=${${PROJECT_NAME}_CMAKE_DEBUG_FLAG})
 # Executables names
 set(CONF_EXECUTABLES ${PROJECT_NAME})
-set(CONF_EXECUTABLES_DIRS "${PROJECT_BINARY_DIR}/@INSTALL_DIR_DEFAULT@/bin")
+set(CONF_EXECUTABLES_DIRS "@INSTALL_DIR_DEFAULT@/bin")
 
 if(${PROJECT_NAME}_CMAKE_DEBUG_FLAG)
     message("    Creating Config File ${PROJECT_NAME}Config.cmake into ${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake")
