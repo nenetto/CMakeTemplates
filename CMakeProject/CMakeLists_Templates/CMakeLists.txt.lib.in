@@ -195,8 +195,6 @@ endif()
 ###########################
 # Include folders
 set(CONF_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/inc" "${PROJECT_BINARY_DIR}/CmakeFilesHeader")
-# Include files
-set(CONF_INCLUDE_FILES ${${PROJECT_NAME}_PUBLIC_HEADERS})
 # Source folders
 set(CONF_SOURCE_DIRS ${PROJECT_SOURCE_DIR})
 # Library names
@@ -213,7 +211,6 @@ set(CONF_SHARED ON)
 set(CONF_DEFINITIONS
     -DCMAKE_DEBUG_FLAG:BOOL=${${PROJECT_NAME}_CMAKE_DEBUG_FLAG})
 # Executables names
-set(CONF_EXECUTABLES "")
 set(CONF_EXECUTABLES_DIRS "")
 
 if(${PROJECT_NAME}_CMAKE_DEBUG_FLAG)
@@ -255,8 +252,6 @@ export(PACKAGE ${PROJECT_NAME})
 ##############################################
 # Include folders
 set(CONF_INCLUDE_DIRS "@INSTALL_DIR_DEFAULT@/inc")
-# Include files
-file(GLOB CONF_INCLUDE_FILES ${CONF_INCLUDE_DIRS}/*.h)
 # Source folders
 set(CONF_SOURCE_DIRS "")
 # Library names
@@ -273,7 +268,6 @@ set(CONF_SHARED ${${PROJECT_NAME}_BUILD_SHARED})
 set(CONF_DEFINITIONS
     -DCMAKE_DEBUG_FLAG:BOOL=${${PROJECT_NAME}_CMAKE_DEBUG_FLAG})
 # Executables names
-set(CONF_EXECUTABLES "")
 set(CONF_EXECUTABLES_DIRS "@INSTALL_DIR_DEFAULT@/bin")
 
 if(${PROJECT_NAME}_CMAKE_DEBUG_FLAG)
