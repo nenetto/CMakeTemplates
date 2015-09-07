@@ -32,7 +32,7 @@ foreach(EXECUTABLE_DIR ${@PROJECT_NAME@_EXECUTABLES_DIRS})
 endforeach()
 
 # Our library dependencies (contains definitions for IMPORTED targets)
-include("${@PROJECT_NAME@_BINARY_DIR}/@PROJECT_NAME@Targets.cmake")
+include(${@PROJECT_NAME@_BINARY_DIR}/@PROJECT_NAME@Targets.cmake)
 
 
 
