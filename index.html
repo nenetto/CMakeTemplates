@@ -62,10 +62,36 @@
 <li>Open the file CMakeLists.txt of your SuperBuild folder and change the name project for the folder's name</li>
 </ol>
 
-<p>This project comes with 4 example projects inside: InternalLibrary, InternalExecutable, ExternalLibrary and ExternalExecutable in order to </p>
+<p>This project comes with 4 example projects inside: InternalLibrary, InternalExecutable, ExternalLibrary and ExternalExecutable in order to show how dependencies work. The dependency list is:</p>
+
+<ul>
+<li>InternalLibrary has no dependencies</li>
+<li>InternalExecutable depends on InternalLibrary and ExternalLibrary</li>
+<li>ExternalLibrary has no dependencies</li>
+<li>ExternalExecutable depends on ExternalLibrary</li>
+</ul>
+
+<p>Note that if you look inside Projects folder, you will find the configuration for each project, including two extra: Doxygen and Git. As reader can see, all external projects depends on Git. CMake during SuperBuild building will download Git repositories of external dependencies and will download them during compilation time (CMake configuration and Generation phase).</p>
 
 <h4>
 <a id="combining-both" class="anchor" href="#combining-both" aria-hidden="true"><span class="octicon octicon-link"></span></a>Combining both</h4>
+
+<p>Let say that you created your awesome library using first option of this tutorial. Now, you want to create your test executable in order to use your library and make some tests. Well, here you will find the steps for this task:</p>
+
+<ol>
+<li>Copy your library folder into your SuperBuild folder</li>
+<li>Go to CMake folder of your <strong>library</strong> and you will find the file: LIBRARY_NAME-external.cmake .  Copy the file into SuperBuild/Projects folder and rename the file as: LIBRARY_NAME.cmake</li>
+</ol>
+
+<p>This is! Now you can configure your SuperBuild project and find a new option called USE_LIBRARY_NAME</p>
+
+<p>For creating your test executable, just follow the first tutorial for create the executable. Then follow the previous two steps in order to add your executable to the SuperBuild and finally add the dependency to your library. To do so, go to your EXECUTABLE_NAME.cmake that you put into SuperBuild/Projects folder and add LIBRARY_NAME in the first lines as:</p>
+
+<pre><code>set(EP_OPTION_NAME "USE_${EP_NAME}")
+set(EP_REQUIRED_PROJECTS LIBRARY_NAME)
+</code></pre>
+
+<p>Configure again, and now the executable will appear as a USE_EXECUTABLE_NAME option. CMake will take care, thanks to <a href="https://github.com/auneri/CMakeAll">CMakeAll</a>, of the dependencies.</p>
 
 <h3>
 <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
