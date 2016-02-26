@@ -19,12 +19,12 @@ cmake_minimum_required (VERSION 3.0.2)
 #############################
 # Creation of the project  ##
 #############################
-set(MYPROJECT_NAME "InternalLibrary")
-project(${MYPROJECT_NAME})
+set(PROJECT_NAME "InternalLibrary")
+project(${PROJECT_NAME})
 
 # Version Control of the project
-set (${MYPROJECT_NAME}_VERSION_MAJOR 0)
-set (${MYPROJECT_NAME}_VERSION_MINOR 0)
+set (${PROJECT_NAME}_VERSION_MAJOR 0)
+set (${PROJECT_NAME}_VERSION_MINOR 0)
 message("Version: ${${MYPROJECT_NAME}_VERSION_MAJOR}.${${MYPROJECT_NAME}_VERSION_MINOR}")
 
 
@@ -33,8 +33,8 @@ message("Version: ${${MYPROJECT_NAME}_VERSION_MAJOR}.${${MYPROJECT_NAME}_VERSION
 ###############################
 set(${PROJECT_NAME}_INSTALL_DIR "${CMAKE_CURRENT_BINARY_DIR}/install" CACHE PATH "InstaLL DIR")
 # Create an option of the project for documentation option set
-option(${PROJECT_NAME}_BUILD_DOCUMENTATION "Create and install the HTML based API documentation (requires Doxygen)" OFF)
-option(${PROJECT_NAME}_CMAKE_DEBUG_FLAG "Create and install the HTML based API documentation (requires Doxygen)" ON)
+option(${PROJECT_NAME}_BUILD_DOCUMENTATION "Create and install the HTML based API documentation (requires Doxygen)" @BUILD_DOCUMENTATION_DEFAULT@)
+option(${PROJECT_NAME}_CMAKE_DEBUG_FLAG "Create and install the HTML based API documentation (requires Doxygen)" @CMAKE_DEBUG_FLAG_DEFAULT@)
 #set(${PROJECT_NAME}_LIB_BIN "NONE" CACHE PATH "Library to link to" FORCE)
 
 # Create  library
@@ -195,8 +195,6 @@ endif()
 ###########################
 # Include folders
 set(CONF_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/inc" "${PROJECT_BINARY_DIR}/CmakeFilesHeader")
-# Include files
-set(CONF_INCLUDE_FILES ${${PROJECT_NAME}_PUBLIC_HEADERS})
 # Source folders
 set(CONF_SOURCE_DIRS ${PROJECT_SOURCE_DIR})
 # Library names
@@ -213,7 +211,6 @@ set(CONF_SHARED ON)
 set(CONF_DEFINITIONS
     -DCMAKE_DEBUG_FLAG:BOOL=${${PROJECT_NAME}_CMAKE_DEBUG_FLAG})
 # Executables names
-set(CONF_EXECUTABLES "")
 set(CONF_EXECUTABLES_DIRS "")
 
 if(${PROJECT_NAME}_CMAKE_DEBUG_FLAG)
@@ -254,17 +251,15 @@ export(PACKAGE ${PROJECT_NAME})
 # Configure Config.cmake for install folder ##
 ##############################################
 # Include folders
-set(CONF_INCLUDE_DIRS "${PROJECT_BINARY_DIR}/install/inc")
-# Include files
-file(GLOB CONF_INCLUDE_FILES ${CONF_INCLUDE_DIRS}/*.h)
+set(CONF_INCLUDE_DIRS "${${PROJECT_NAME}_INSTALL_DIR}/inc")
 # Source folders
 set(CONF_SOURCE_DIRS "")
 # Library names
 set(CONF_LIBRARY ${PROJECT_NAME})
 # Library Folders
-set(CONF_LIBRARY_DIRS "${PROJECT_BINARY_DIR}/install/lib" "${PROJECT_BINARY_DIR}/install/bin")
+set(CONF_LIBRARY_DIRS "${${PROJECT_NAME}_INSTALL_DIR}/lib" "${${PROJECT_NAME}_INSTALL_DIR}/bin")
 # Binary folder
-set(CONF_BINARY_DIR "${PROJECT_BINARY_DIR}")
+set(CONF_BINARY_DIR "${${PROJECT_NAME}_INSTALL_DIR}/bin")
 # Install folder
 set(CONF_INSTALL_DIR "${${PROJECT_NAME}_INSTALL_DIR}")
 # Flag for libraries
@@ -273,11 +268,10 @@ set(CONF_SHARED ${${PROJECT_NAME}_BUILD_SHARED})
 set(CONF_DEFINITIONS
     -DCMAKE_DEBUG_FLAG:BOOL=${${PROJECT_NAME}_CMAKE_DEBUG_FLAG})
 # Executables names
-set(CONF_EXECUTABLES "")
-set(CONF_EXECUTABLES_DIRS "${PROJECT_BINARY_DIR}/install/bin")
+set(CONF_EXECUTABLES_DIRS "${${PROJECT_NAME}_INSTALL_DIR}/bin")
 
 if(${PROJECT_NAME}_CMAKE_DEBUG_FLAG)
-    message("    Creating Config File ${PROJECT_NAME}Config.cmake into ${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake")
+    message("    Creating Config File ${PROJECT_NAME}Config.cmake into ${${PROJECT_NAME}_INSTALL_DIR}/${PROJECT_NAME}Config.cmake")
 endif()
 # Create the file
 configure_file("${PROJECT_SOURCE_DIR}/CMake/Config.cmake.in" "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigInstall.cmake" @ONLY)
