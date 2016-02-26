@@ -1,6 +1,6 @@
 
 # command alias: Slicer
-list(APPEND HELP "   Slicer - Slicer application.\n")
+list(APPEND HELP "   Slicer - 3D Slicer.\n")
 if(ARGV MATCHES "^Slicer$")
   string(REPLACE "${PATHSEP}" ";" SLICERPATH "$ENV{SLICERPATH}")
   set(ARGV ${CMD} $ENV{SLICER_EXECUTABLE} --additional-module-paths ${SLICERPATH})
@@ -12,6 +12,13 @@ list(APPEND HELP "   Slicelet <path> - Slicer scripted module as a standalone ap
 if(ARGV MATCHES "^Slicelet")
   list(GET ARGV 1 MODULE)
   set(ARGV ${CMD} $ENV{SLICER_EXECUTABLE} --no-main-window --disable-cli-modules --disable-loadable-modules --disable-scripted-loadable-modules --python-script ${MODULE})
+endif()
+
+
+# command alias: MITK
+list(APPEND HELP "   MITK - MITK workbench.\n")
+if(ARGV MATCHES "^MITK$")
+  set(ARGV ${CMD} $ENV{MITK_EXECUTABLE})
 endif()
 
 
