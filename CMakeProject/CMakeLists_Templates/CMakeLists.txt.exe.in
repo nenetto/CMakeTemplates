@@ -74,7 +74,7 @@ endif()
 configure_file (
   "${PROJECT_SOURCE_DIR}/CMake/Config.h.in"
   "${PROJECT_BINARY_DIR}/CmakeFilesHeader/@PROJECT_NAME_DEFAULT@Config.h"
-  FORCE)
+  )
 if(${PROJECT_NAME}_CMAKE_DEBUG_FLAG)
     message("    Creating configuration file Config.h in ${PROJECT_BINARY_DIR}/CmakeFilesHeader/@PROJECT_NAME_DEFAULT@Config.h")
 endif()
@@ -140,6 +140,8 @@ set(CONF_LIBRARY "")
 set(CONF_LIBRARY_DIRS "")
 # Binary folder
 set(CONF_BINARY_DIR "${PROJECT_BINARY_DIR}")
+# Build folder
+set(CONF_BUILD_DIR "${PROJECT_BINARY_DIR}")
 # Install folder
 set(CONF_INSTALL_DIR "${${PROJECT_NAME}_INSTALL_DIR}")
 # Flag for libraries
@@ -197,6 +199,8 @@ set(CONF_LIBRARY "")
 set(CONF_LIBRARY_DIRS "${${PROJECT_NAME}_INSTALL_DIR}/lib")
 # Binary folder
 set(CONF_BINARY_DIR "${${PROJECT_NAME}_INSTALL_DIR}/bin")
+# Build folder
+set(CONF_BUILD_DIR "${PROJECT_BINARY_DIR}")
 # Install folder
 set(CONF_INSTALL_DIR "${PROJECT_BINARY_DIR}/${${PROJECT_NAME}_INSTALL_DIR}")
 # Flag for libraries
